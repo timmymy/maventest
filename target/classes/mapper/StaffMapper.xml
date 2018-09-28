@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.links.dao.IStaffDao">
+
+	 <!-- resultMap中的type表示返回什么类型的对象 -->
+    <resultMap type="com.links.bean.Staff" id="StaffResultMap">
+        <!-- property 表示com.links.bean.Staff中的属性； column 表示表中的列名 -->
+        <id property="staffId" column="staff_id" />
+        <result property="staffName" column="staff_name" />
+        <result property="staffPwd" column="staff_pwd" />
+        <result property="staffJobId" column="staff_job_id" />
+        <!-- association字面意思关联，这里只专门做一对一关联； property表示是com.links.bean.Staff中的属性名称； 
+            javaType表示该属性是什么类型对象 -->
+        <association property="team" javaType="com.links.bean.Team">
+            <!-- property 表示com.links.bean.Team中的属性； column 表示表中的列名 -->
+            <id property="teamId" column="team_id" />
+            <result property="groupName" column="team_group_name" />
+            <result property="projectName" column="team_project_name" />
+        </association>
+    </resultMap>
+    
+	<select id="staffList" resultMap="StaffResultMap">
+		select staff_id, staff_name,staff_pwd,staff_job_id,team_id,team_group_name,team_project_name
+		from staff,team
+		where staff_team_id=team_id
+	</select>
+	
+	<select id="selectStaffByJobId" parameterType="String" resultMap="StaffResultMap"> 
+		select staff_id, staff_name,staff_pwd,staff_job_id,team_id,team_group_name,team_project_name
+		from staff,team where staff_team_id=team_id and staff_job_id = #{staffJobId}
+		<!-- <where>
+			<if test="staffJobId != null">
+			    and staff_job_id = #{staffJobId}
+			</if>
+			and staff_team_id=team_id
+		</where> -->
+	</select>
+	
+	<delete id="deleteStaff" parameterType="String">
+		delete from staff where staff_job_id=#{staffJobId}
+	</delete>
+	
+	<update id="editStaff" parameterType="com.links.bean.Staff">
+		update staff
+		<set>
+			<if test="staffName!=null">
+				staff_name=#{staffName},
+			</if>
+			<if test="staffPwd!=null">
+				staff_pwd=#{staffPwd},
+			</if>
+			<if test="team.teamId!=null">
+				staff_team_id=#{team.teamId},
+			</if>
+		</set>
+		where staff_job_id=#{staffJobId}
+	</update>
+	
+	<insert id="inserStaff" parameterType="com.links.bean.Staff">
+		INSERT INTO staff(staff_name,staff_pwd,staff_job_id,staff_team_id) VALUES(#{staffName},#{staffPwd},#{staffJobId},#{team.teamId}) 
+	</insert>
+
+</mapper>
