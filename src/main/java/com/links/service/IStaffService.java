@@ -16,4 +16,9 @@ public interface IStaffService {
 	
 	void addStaffInfo(Staff staff);
 	
+	Staff login(Staff staff);
+
+	void register(Staff staff);
+	
+	Staff searchTest(String staffJobId) throws Exception;
 }

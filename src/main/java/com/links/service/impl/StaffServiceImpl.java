@@ -36,5 +36,17 @@ public class StaffServiceImpl implements IStaffService {
 	public void addStaffInfo(Staff staff) {
 		staffDao.inserStaff(staff);
 	}
+
+	public Staff login(Staff staff) {
+		return staffDao.findStaffByJobIdAndPwd(staff);
+	}
+
+	public void register(Staff staff) {
+		staffDao.inserStaff(staff);;
+	}
+
+	public Staff searchTest(String staffJobId) throws Exception {
+		return staffDao.selectStaffByJobId(staffJobId);
+	}
 	
 }

@@ -16,4 +16,6 @@ public interface IStaffDao {
 	
 	void inserStaff(Staff staff);
 	
+	Staff findStaffByJobIdAndPwd(Staff staff);
+	
 }
