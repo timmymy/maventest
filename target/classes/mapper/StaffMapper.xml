@@ -37,6 +37,21 @@
 		</where> -->
 	</select>
 	
+	<select id="findStaffByJobIdAndPwd" parameterType="com.links.bean.Staff" resultMap="StaffResultMap">
+		select staff_id, staff_name,staff_pwd,staff_job_id,team_id,team_group_name,team_project_name
+		from staff,team
+		 <!-- where staff_job_id=#{staffJobId} and staff_pwd=#{staffPwd} and team_id=staff_team_id -->
+		 <where>
+		 	<if test="staffJobId != null">
+			    and staff_job_id=#{staffJobId}
+			</if>
+			<if test="staffPwd != null">
+				and staff_pwd=#{staffPwd} 
+			</if>
+			and staff_team_id=team_id
+		 </where>
+	</select>
+	
 	<delete id="deleteStaff" parameterType="String">
 		delete from staff where staff_job_id=#{staffJobId}
 	</delete>
