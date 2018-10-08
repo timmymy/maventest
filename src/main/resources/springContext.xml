@@ -2,8 +2,8 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	 xmlns:tx="http://www.springframework.org/schema/tx"
-	 xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:p="http://www.springframework.org/schema/p"
     xmlns:mvc="http://www.springframework.org/schema/mvc" 
     xmlns:util="http://www.springframework.org/schema/util"
     xmlns:aop="http://www.springframework.org/schema/aop"
@@ -19,9 +19,7 @@
 				http://www.springframework.org/schema/aop 
             	http://www.springframework.org/schema/aop/spring-aop.xsd
             	http://www.springframework.org/schema/tx 
-            	http://www.springframework.org/schema/tx/spring-tx.xsd 	
-			">
-			
+            	http://www.springframework.org/schema/tx/spring-tx.xsd">
 	<mvc:annotation-driven />
 	
 	<!-- 配置c3p0 -->
@@ -64,9 +62,7 @@
 
 	<!-- 搜索spring控件 -->
 	<context:component-scan base-package="com.links.controller"></context:component-scan>
-	<!-- <context:component-scan base-package="com.links.bean"></context:component-scan> -->
 	<context:component-scan base-package="com.links.service"></context:component-scan>
-	<!-- <context:component-scan base-package="com.links.dao"></context:component-scan> -->
 	<!-- 视图页面配置 -->
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
