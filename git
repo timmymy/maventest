@@ -1,0 +1,24 @@
+[33mtag v1.0[m
+Tagger: timmymy <2467130853@qq.com>
+Date:   Mon Oct 8 15:26:03 2018 +0800
+
+version 1.0
+
+[33mcommit a489239ce37f79cc025155f2eaeda02afacadb33[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;33mtag: v1.0[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: timmymy <2467130853@qq.com>
+Date:   Mon Oct 8 14:01:54 2018 +0800
+
+    springContext update
+
+[1mdiff --git a/src/main/resources/springContext.xml b/src/main/resources/springContext.xml[m
+[1mindex 8a8fbe3..57a24db 100644[m
+[1m--- a/src/main/resources/springContext.xml[m
+[1m+++ b/src/main/resources/springContext.xml[m
+[36m@@ -64,6 +64,7 @@[m
+ [m
+ 	<!-- 搜索spring控件 -->[m
+ 	<context:component-scan base-package="com.links.controller"></context:component-scan>[m
+[32m+[m[41m	[m
+ 	<context:component-scan base-package="com.links.service"></context:component-scan>[m
+ 	[m
+ 	<!-- 视图页面配置 -->[m
