@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -92,18 +93,32 @@ public class StaffController {
 	}
 	
 	@RequestMapping("/login")
-	public ModelAndView login(@RequestParam(value = "act") String staffJobId,@RequestParam(value = "pwd") String staffPwd) {
+	public ModelAndView login(@RequestParam(value = "act") String staffJobId,@RequestParam(value = "pwd") String staffPwd,
+			HttpSession session) {
 		Staff staff = staffService.selectStaffByJobId(staffJobId);
-		Staff logStaff = staffService.login(staff);
+		//Staff logStaff = staffService.login(staff);
 		ModelAndView mv = null;
-		if (staffPwd.equals(logStaff.getStaffPwd())) {
+		if (staffPwd.equals(staff.getStaffPwd())) {
+			session.setAttribute("staffInfo", staff);
+			
 			mv = new ModelAndView("welcome");
-			mv.addObject("staff", logStaff);
+			//mv.addObject("staff", staff);
 			mv.addObject("msg", "login ok");
 		}else {
 			mv = new ModelAndView("login");
 			mv.addObject("msg", "act or pwd is error");
 		}
+		return mv;
+	}
+	
+	@RequestMapping("/logout")
+	public ModelAndView logout(
+			/*@RequestParam(value="uid") String staffJobId,*/
+			HttpSession session) {
+		//Staff staff = staffService.selectStaffByJobId(staffJobId);
+		//session.removeValue(staff);
+		//session.removeAttribute("staffInfo");
+		ModelAndView mv = new ModelAndView("login");
 		return mv;
 	}
 	
@@ -137,5 +152,6 @@ public class StaffController {
 		mv.addObject("list", list);
 		return mv;
 	}
+	
 	
 }

@@ -8,7 +8,8 @@
 </head>
 <body>
 <div style="float: right; margin-right: 10%;">
-<span style="font-size: 20px;color: green;">${staff.staffName }&nbsp;&nbsp;&nbsp;&nbsp;${staff.team.projectName }</span>
+<span style="font-size: 20px;color: green;">${staffInfo.staffName }&nbsp;&nbsp;&nbsp;&nbsp;${staffInfo.team.projectName }  </span>
+<a href="logout">退出</a>
 </div>
 <h1><a href="show">查看所有员工信息</a></h1>
 <input type="hidden" id="msg" value="${msg }">
