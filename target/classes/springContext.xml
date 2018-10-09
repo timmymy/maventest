@@ -64,6 +64,7 @@
 
 	<!-- 搜索spring控件 -->
 	<context:component-scan base-package="com.links.controller"></context:component-scan>
+	
 	<context:component-scan base-package="com.links.service"></context:component-scan>
 	
 	<!-- 视图页面配置 -->
