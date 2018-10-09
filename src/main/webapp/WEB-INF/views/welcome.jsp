@@ -26,6 +26,9 @@
 	<h3>
 		<a href="show" onclick=" return isLog();">查看所有员工信息</a>
 	</h3>
+	<h3>
+		<a href="../team/all" onclick=" return isLog();">项目组管理</a>
+	</h3>
 	<form action="search">
 		查看指定员工信息:<input type="text" id="searchId" name="searchId" />
 		&nbsp;&nbsp;&nbsp; <input type="submit" id="submit" name="submit"
