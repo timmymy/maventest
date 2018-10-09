@@ -13,4 +13,29 @@
 		select team_id,team_group_name,team_project_name from team where team_id=#{teamId}
 	</select>
 	
+	<select id="selectAllTeamInfos" resultMap="TeamResultMap">
+		select * from team
+	</select>
+	
+	<insert id="insertTeam" parameterType="com.links.bean.Team">
+		insert into team(team_id,team_group_name,team_project_name) values(#{teamId},#{groupName},#{projectName})
+	</insert>
+	
+	<delete id="delteTeam" parameterType="int">
+		delete from team where team_id = #{teamId}
+	</delete>
+	
+	<update id="updateTeam" parameterType="com.links.bean.Team"> 
+		update team
+		<set>
+			<if test="groupName!=null">
+				team_group_name = #{groupName},
+			</if>
+			<if test="projectName!=null">
+				team_project_name = #{projectName},
+			</if>
+		</set>
+		where team_id = #{teamId}
+	</update>
+	
 </mapper>

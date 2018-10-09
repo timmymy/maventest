@@ -1,0 +1,68 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>team list</title>
+<style type="text/css">
+table {
+	border-collapse: collapse;
+	border: 1px solid black;
+	margin-top: 50px;
+	margin-left: 30%;
+	text-align: center;
+}
+
+table td {
+	border: 1px solid black;
+}
+
+table.tr {
+	width: 600px;
+	height: 50px;
+}
+</style>
+</head>
+<body>
+	<div style="float: right; margin-right: 10%;">
+		<span style="font-size: 20px; color: green;">${staffInfo.staffName }&nbsp;&nbsp;&nbsp;&nbsp;${staffInfo.team.projectName }</span>
+		<a href="../staff/logout">退出</a>
+	</div>
+	<h1 style="text-align: center; text-shadow: gray;">小组列表</h1>
+	<h3 style="text-align: right; margin-right: 20%">
+		<a href="addDo">新增小组信息</a>
+	</h3>
+	<table>
+		<tr style="background-color: #A7C942;height: 30px;">
+			<td>组编号</td>
+			<td>组名</td>
+			<td>项目组</td>
+			<td>操作</td>
+		</tr>
+		<c:if test="${!empty(list) }">
+			<c:forEach items="${list }" var="teamInfo">
+				<tr>
+					<td style="width: 100px;">${teamInfo.teamId }</td>
+					<td style="width: 100px;">${teamInfo.groupName }</td>
+					<td style="width: 100px;">${teamInfo.projectName }</td>
+					<td style="width: 60px"><a
+						href="delete?id=${teamInfo.teamId }"
+						style="text-decoration: none;">del</a> <a
+						href="editDo?id=${teamInfo.teamId }"
+						style="text-decoration: none;">edit</a></td>
+				</tr>
+			</c:forEach>
+		</c:if>
+	</table>
+	<input type="hidden" id="msg" value="${msg }">
+</body>
+<script type="text/javascript">
+	var msg = document.getElementById("msg").value;
+	console.log(msg);
+	if (msg != null && msg != "") {
+		alert(msg);
+	}
+</script>
+</html>
