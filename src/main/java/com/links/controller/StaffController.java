@@ -117,8 +117,8 @@ public class StaffController {
 			HttpSession session) {
 		//Staff staff = staffService.selectStaffByJobId(staffJobId);
 		//session.removeValue(staff);
-		//session.removeAttribute("staffInfo");
-		ModelAndView mv = new ModelAndView("login");
+		ModelAndView mv = new ModelAndView("welcome");
+		session.removeAttribute("staffInfo");
 		return mv;
 	}
 	
